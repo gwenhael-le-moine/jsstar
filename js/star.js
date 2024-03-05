@@ -5,30 +5,30 @@ var initialize_a_star = function( dom_container, level_index, theme ) {
 
 	var assets = {
 		levels: [ "#################@##        x#H##          x ####       ##x    ##   ## x      #### x  x     x  ## x      x## x ##     ##x     x#################",
-				  " #  # # #   # ###   x         @#   #x  #x   x   # # x     x  # #      #   x   # #    #H#  x    #   #  # #   #xx##             #  #  #        #  ",
-				  "#################           x#@##   ##      ##H##   #x     x   ## x     x##   x## #x  x  x#  x### ##x #x  x x####x    ##x      #################",
-				  "#################            #H##     #        ###x#x x#x#x#x#x## # #x x# # # ####x#x#x x#x#x#x##     #        ##   #       #@ #################",
-				  " ############## #@  #   #  #   ##  #x # x  x # ###      #  #   ##x #x#        ####     # x #   ##x#  # # #   #H##   #    x#  #x# ############## ",
-				  "    ############   #   x   #x x#  #    x    # ## #     x       ##@     x       ###     x  #   ###      x    #  ##H #   x  ##x  #################",
-				  "#################              # ## ###  #x ##x# #x  #x # # # #   #  #  ### ##   ##  #  #x# #x# #              ##  @#x    H  #x#################",
-				  "############### #  x##        ###  #x  ## x    ##  x## # #x    ###     ##  #x# ### #       x#x ##xHx#   x  #@# ###             # ###############",
-				  "  # ###########  #x#x      #  @##x x#    x    #  # #  x##  x#  ##  #x #xHx    x##     x##     # #x#x         #  #           #   ############    ",
-				  "    ########### #### x         ##   H ###x x# x## x   #x #x   # #     #  x  # x##x#x  # x#  #@#  #x   ###  ###  #         # # #  #########  #  #",
-				  "#################      #      @##  #xx     xx ####   x   ##   x##x    #x#xx  ##### ##    ##    ##x  x# x    H x###x###    #   ## ## ########### ",
-				  "##     ##  #### #@#####x ### x###    xx     x  ## ##  ##x  #x# ## # x ###x ##  ## ##  ##   #H# ##     x        ##        x     #################",
-				  " ############## # @#        x ### #   #x   x## ##       x    # ## x          #x## #      x     ###      x x  #x##H  #    x # # # ############## ",
-				  "#################x#x        x#x## x#@      ##  ## H        x   ##        x#    ##      x       ## x#        #  ##x#x        x#x#################",
-				  " ###### ####### #     x#     x ## # x #  #   x ##  @#   #xx #x # # #   # x  H# ##x       #  #x # #      x     # #x            x# ############## ",
-				  "################## H#x x      x##x @x#x       #### ###    x   ####     x#x#    ##xx       x#x  ### x    ####x  ###x#  #        #################",
-				  "################# x#        #@ ## #  x#xx#x  # ##    #x##x# x  ## x#       x#  ##  x#x    x#   ## #  # ##x#  # ##    x #x   H  #################",
-				  "################# x    x  H#   ##  #x#x   #x   ##   #x#    #x  ##   x  #   x#x ## #x#   # x#   ## x#x # x #    ##x#@  #     #  #################",
-				  "#################x   ##     ##x## #  #      #x ## x#   x##  x  ## #    #x      ##    #   x#    ## ## x# ##x  #H## x# #x     ##@#################",
-				  "#################   x#x        ###x  x# ##x   ### # # x   #  # ## H #  ##  # @x## #  #   x # # ###   x## #x  x###        x#x   #################",
-				  "################# ###     x   ###   #       # ###   ##x      x ##  x    x   x ###    #    ###x ##  x x @ H x xx#################                ",
-				  "#################x#  #x# #x  # ##    #         ##x   #  #x  x  ### #x      x #### x #   ###x   ##     #@#H  x  #################                ",
-				  " ############## # #  #x# #x  # ##    x  #      ###   #   x #x  ##  #x  #  xx x ###x #   ## x   ##     #@#H  x  # ##############                 ",
-				  "#################     #       ### ##x x    ##x### #x     x#  #### xx  x# ##    ## #x x #    ## ## ##   @#H###xx#################                ",
-				  "#################            # ## x ##x   x    ##   #x  x  ##  ## x    ##  #x  ## #x   x#    x ## ##x #@ H     #################                " ]
+					" #  # # #   # ###   x         @#   #x  #x   x   # # x     x  # #      #   x   # #    #H#  x    #   #  # #   #xx##             #  #  #        #  ",
+					"#################           x#@##   ##      ##H##   #x     x   ## x     x##   x## #x  x  x#  x### ##x #x  x x####x    ##x      #################",
+					"#################            #H##     #        ###x#x x#x#x#x#x## # #x x# # # ####x#x#x x#x#x#x##     #        ##   #       #@ #################",
+					" ############## #@  #   #  #   ##  #x # x  x # ###      #  #   ##x #x#        ####     # x #   ##x#  # # #   #H##   #    x#  #x# ############## ",
+					"    ############   #   x   #x x#  #    x    # ## #     x       ##@     x       ###     x  #   ###      x    #  ##H #   x  ##x  #################",
+					"#################              # ## ###  #x ##x# #x  #x # # # #   #  #  ### ##   ##  #  #x# #x# #              ##  @#x    H  #x#################",
+					"############### #  x##        ###  #x  ## x    ##  x## # #x    ###     ##  #x# ### #       x#x ##xHx#   x  #@# ###             # ###############",
+					"  # ###########  #x#x      #  @##x x#    x    #  # #  x##  x#  ##  #x #xHx    x##     x##     # #x#x         #  #           #   ############    ",
+					"    ########### #### x         ##   H ###x x# x## x   #x #x   # #     #  x  # x##x#x  # x#  #@#  #x   ###  ###  #         # # #  #########  #  #",
+					"#################      #      @##  #xx     xx ####   x   ##   x##x    #x#xx  ##### ##    ##    ##x  x# x    H x###x###    #   ## ## ########### ",
+					"##     ##  #### #@#####x ### x###    xx     x  ## ##  ##x  #x# ## # x ###x ##  ## ##  ##   #H# ##     x        ##        x     #################",
+					" ############## # @#        x ### #   #x   x## ##       x    # ## x          #x## #      x     ###      x x  #x##H  #    x # # # ############## ",
+					"#################x#x        x#x## x#@      ##  ## H        x   ##        x#    ##      x       ## x#        #  ##x#x        x#x#################",
+					" ###### ####### #     x#     x ## # x #  #   x ##  @#   #xx #x # # #   # x  H# ##x       #  #x # #      x     # #x            x# ############## ",
+					"################## H#x x      x##x @x#x       #### ###    x   ####     x#x#    ##xx       x#x  ### x    ####x  ###x#  #        #################",
+					"################# x#        #@ ## #  x#xx#x  # ##    #x##x# x  ## x#       x#  ##  x#x    x#   ## #  # ##x#  # ##    x #x   H  #################",
+					"################# x    x  H#   ##  #x#x   #x   ##   #x#    #x  ##   x  #   x#x ## #x#   # x#   ## x#x # x #    ##x#@  #     #  #################",
+					"#################x   ##     ##x## #  #      #x ## x#   x##  x  ## #    #x      ##    #   x#    ## ## x# ##x  #H## x# #x     ##@#################",
+					"#################   x#x        ###x  x# ##x   ### # # x   #  # ## H #  ##  # @x## #  #   x # # ###   x## #x  x###        x#x   #################",
+					"################# ###     x   ###   #       # ###   ##x      x ##  x    x   x ###    #    ###x ##  x x @ H x xx#################                ",
+					"#################x#  #x# #x  # ##    #         ##x   #  #x  x  ### #x      x #### x #   ###x   ##     #@#H  x  #################                ",
+					" ############## # #  #x# #x  # ##    x  #      ###   #   x #x  ##  #x  #  xx x ###x #   ## x   ##     #@#H  x  # ##############                 ",
+					"#################     #       ### ##x x    ##x### #x     x#  #### xx  x# ##    ## #x x #    ## ## ##   @#H###xx#################                ",
+					"#################            # ## x ##x   x    ##   #x  x  ##  ## x    ##  #x  ## #x   x#    x ## ##x #@ H     #################                " ]
 	};
 
 	////// FUNCTIONS //////
@@ -70,10 +70,10 @@ var initialize_a_star = function( dom_container, level_index, theme ) {
 
 	var load_level = function( index ) {
 		return( { moving:             cell.BALL,
-				  distance_travelled: 0,
-				  level:              index,
-				  board:              assets.levels[ index ],
-				  it_s_over:          false } );
+					distance_travelled: 0,
+					level:              index,
+					board:              assets.levels[ index ],
+					it_s_over:          false } );
 	};
 
 	var make_a_move = function( where ) {
@@ -115,7 +115,7 @@ var initialize_a_star = function( dom_container, level_index, theme ) {
 			set_cell( item_coord[ 0 ], item_coord[ 1 ], cell.EMPTY ); /* empty the origin cell */
 			item_coord[ 0 ] += motion[ 0 ];           /* move coordinate */
 			item_coord[ 1 ] += motion[ 1 ];           /* to those of target cells */
-			
+
 			var push_pos = path.length;
 			path[ push_pos ] = [  ];
 			path[ push_pos ][ 0 ] = item_coord[ 0 ];
@@ -150,10 +150,10 @@ var initialize_a_star = function( dom_container, level_index, theme ) {
 											x * level_infos.cell.width,
 											y * level_infos.cell.height,
 											level_infos.cell.width,
-											level_infos.cell.height );		
+											level_infos.cell.height );
 	};
 
- 	var display_switch_actor = function(  ) {
+	var display_switch_actor = function(  ) {
 		var ball_pos = get_pos( cell.BALL );
 		var cube_pos = get_pos( cell.CUBE );
 
@@ -187,7 +187,7 @@ var initialize_a_star = function( dom_container, level_index, theme ) {
 		infos += "<em>" + count_gifts(  ) + "</em> gifts left<br />";
 		infos += "<em>" + state.distance_travelled + "</em> meters travelled";
 
-		jQuery( DOM_infos.container + " .gstar #infos" ).html( infos );
+		document.querySelector( DOM_infos.container + " .gstar #infos" ).innerHTML = infos;
 	};
 
 	var format_help = function(  ) {
@@ -208,7 +208,7 @@ var initialize_a_star = function( dom_container, level_index, theme ) {
 		for ( var i=0 ; i < path.length-1 ; i++ ) {
 			draw_cell( assets.sprites.empty, path[ i ][ 0 ], path[ i ][ 1 ] );
 			draw_cell( ( state.moving == cell.BALL ) ? assets.sprites.ball_selected : assets.sprites.cube_selected,
-					   path[ i+1 ][ 0 ], path[ i+1 ][ 1 ] );
+						 path[ i+1 ][ 0 ], path[ i+1 ][ 1 ] );
 
 			state.distance_travelled++;                /* increment distance_travelled */
 		}
@@ -302,7 +302,7 @@ var initialize_a_star = function( dom_container, level_index, theme ) {
 	starhtml +=	'<canvas id="starboard" width="320" height="180"></canvas>';
 	starhtml +=	'<aside id="infos"></aside>';
 	starhtml +=	'</div>';
-	jQuery( dom_container ).html( starhtml );
+	document.querySelector( dom_container ).innerHTML = starhtml;
 
 	// Now we can collect some informations about this DOM branch we have
 	load_sprites( theme );
@@ -310,10 +310,10 @@ var initialize_a_star = function( dom_container, level_index, theme ) {
 		container: dom_container,
 		canvas: {
 			//jQuery() returns a jquery object, [0] to get the canvas itself
-			context: jQuery( dom_container + " #starboard" )[ 0 ].getContext( '2d' ),
-			offset:  jQuery( dom_container + " #starboard" ).offset(),
-			width:   jQuery( dom_container + " #starboard" ).width(),
-			height:  jQuery( dom_container + " #starboard" ).height()
+			context: document.querySelector( dom_container + " #starboard" ).getContext( '2d' ),
+			offset:  document.querySelector( dom_container + " #starboard" ).offsetLeft,
+			width:   document.querySelector( dom_container + " #starboard" ).width,
+			height:  document.querySelector( dom_container + " #starboard" ).height
 		}
 	};
 
@@ -326,7 +326,7 @@ var initialize_a_star = function( dom_container, level_index, theme ) {
 		}
 	};
 
-	var state = load_level( ( level_index === undefined ) ? 0 : 
+	var state = load_level( ( level_index === undefined ) ? 0 :
 							( level_index >= assets.levels.length ) ? assets.levels.length - 1 :
 							( level_index < 0 ) ? 0 : level_index );
 
@@ -335,7 +335,6 @@ var initialize_a_star = function( dom_container, level_index, theme ) {
 	setTimeout( function(){ display_level(  ); }, 100 ); // 1/10 second
 
 	// Start main "loop"
-	jQuery(document).focus(  );
-	jQuery(document).click( event_handler );
-	jQuery(document).keydown( event_handler );
+	document.addEventListener('click', event_handler)
+	document.addEventListener('keydown', event_handler)
 };
