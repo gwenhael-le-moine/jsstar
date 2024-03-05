@@ -1,4 +1,4 @@
-let initialize_a_star = function( dom_container, level_index, theme ) {
+let initialize_a_star = ( dom_container, level_index, theme ) => {
 	// kinda enums
 	let cell = { WALL: '#', BALL: '@', CUBE: 'H', EMPTY: ' ', GIFT: 'x' }
 	let direction = { UP: 38, DOWN: 40, LEFT: 37, RIGHT: 39 }
@@ -34,7 +34,7 @@ let initialize_a_star = function( dom_container, level_index, theme ) {
 	}
 
 	////// FUNCTIONS //////
-	let count_gifts = function() {
+	let count_gifts = () => {
 		let n = 0
 		for ( let i = level_infos.height * level_infos.width ; i-- ; ) {
 			if ( state.board[ i ] == cell.GIFT ) {
@@ -44,7 +44,7 @@ let initialize_a_star = function( dom_container, level_index, theme ) {
 		return n
 	}
 
-	let get_pos = function( actor ) {
+	let get_pos = ( actor ) => {
 		let p = state.board.indexOf( actor, state.board )
 		let pos = []
 		pos[ 1 ] = Math.floor( p / level_infos.width ) /* y */
@@ -53,24 +53,24 @@ let initialize_a_star = function( dom_container, level_index, theme ) {
 		return pos
 	}
 
-	let get_cell = function( x, y ) {
+	let get_cell = ( x, y ) => {
 		return state.board[ x + ( y * level_infos.width ) ]
 	}
 
-	let set_cell = function( x, y, value ) {
+	let set_cell = ( x, y, value ) => {
 		let p = x + ( y * level_infos.width )
 		state.board = [ state.board.substring( 0, p ), value, state.board.substring( p+1, state.board.length ) ].join( '' )
 	}
 
-	let switch_actor = function() {
+	let switch_actor = () => {
 		state.moving = ( state.moving == cell.BALL ) ? cell.CUBE : cell.BALL
 	}
 
-	let won_or_not = function() {
+	let won_or_not = () => {
 		return count_gifts() === 0
 	}
 
-	let load_level = function( index ) {
+	let load_level = ( index ) => {
 		return( { moving:             cell.BALL,
 					distance_travelled: 0,
 					level:              index,
@@ -78,7 +78,7 @@ let initialize_a_star = function( dom_container, level_index, theme ) {
 					it_s_over:          false } )
 	}
 
-	let make_a_move = function( where ) {
+	let make_a_move = ( where ) => {
 		let motion = [ 0, 0 ]
 		let item_coord = get_pos( state.moving )
 
@@ -129,7 +129,7 @@ let initialize_a_star = function( dom_container, level_index, theme ) {
 	}
 
 	////// HTML/Canvas version specific functions
-	let load_sprites = function( theme ) {
+	let load_sprites = ( theme ) => {
 		assets.sprites = {  }
 		assets.sprites.ball = new Image()
 		assets.sprites.ball.src = "themes/" + theme + "/tex_ball.png"
@@ -147,7 +147,7 @@ let initialize_a_star = function( dom_container, level_index, theme ) {
 		assets.sprites.gift.src = "themes/" + theme + "/tex_gift.png"
 	}
 
-	let draw_cell = function( sprite, x, y ) {
+	let draw_cell = ( sprite, x, y ) => {
 		DOM_infos.canvas.context.drawImage( sprite,
 											x * level_infos.cell.width,
 											y * level_infos.cell.height,
@@ -155,7 +155,7 @@ let initialize_a_star = function( dom_container, level_index, theme ) {
 											level_infos.cell.height )
 	}
 
-	let display_switch_actor = function() {
+	let display_switch_actor = () => {
 		let ball_pos = get_pos( cell.BALL )
 		let cube_pos = get_pos( cell.CUBE )
 
@@ -165,7 +165,7 @@ let initialize_a_star = function( dom_container, level_index, theme ) {
 		draw_cell( ( state.moving == cell.CUBE ) ? assets.sprites.cube_selected : assets.sprites.cube, cube_pos[ 0 ], cube_pos[ 1 ] )
 	}
 
-	let full_display_on_canvas = function() {
+	let full_display_on_canvas = () => {
 		for ( let i=0 ; i < level_infos.height ; i++ ) {
 			for ( let j=0 ; j < level_infos.width ; j++ ) {
 				let c = get_cell( j, i )
@@ -190,7 +190,7 @@ let initialize_a_star = function( dom_container, level_index, theme ) {
 		}
 	}
 
-	let update_infos = function() {
+	let update_infos = () => {
 		let infos = "<h1>Star5</h1><br />"
 		infos += "Level <em>" + (state.level+1) + "</em> of <em>" + assets.levels.length + "</em><br />"
 		infos += "<em>" + count_gifts() + "</em> gifts left<br />"
@@ -199,7 +199,7 @@ let initialize_a_star = function( dom_container, level_index, theme ) {
 		document.querySelector( DOM_infos.container + " .gstar #infos" ).innerHTML = infos
 	}
 
-	let format_help = function() {
+	let format_help = () => {
 		let help = "<em>←↑→↓</em> to move around<br />"
 		help += "<em>Space</em> to switch actor<br />"
 		help += "<em>r</em> to reload<br />"
@@ -208,12 +208,12 @@ let initialize_a_star = function( dom_container, level_index, theme ) {
 		return help
 	}
 
-	let display_level = function() {
+	let display_level = () => {
 		update_infos()
 		full_display_on_canvas()
 	}
 
-	let display_move_actor = function( path ) {
+	let display_move_actor = ( path ) => {
 		for ( let i=0 ; i < path.length-1 ; i++ ) {
 			draw_cell( assets.sprites.empty, path[ i ][ 0 ], path[ i ][ 1 ] )
 			draw_cell( ( state.moving == cell.BALL ) ? assets.sprites.ball_selected : assets.sprites.cube_selected,
@@ -224,7 +224,7 @@ let initialize_a_star = function( dom_container, level_index, theme ) {
 		update_infos()
 	}
 
-	let event_handler = function( e ) {
+	let event_handler = ( e ) => {
 		if ( !state.it_s_over ) {
 			if ( e.type === "click" ) {
 				let movingpos = get_pos( state.moving )
@@ -340,7 +340,7 @@ let initialize_a_star = function( dom_container, level_index, theme ) {
 
 	// kinda ugly workaround around a mysterious bug causing the canvas
 	// not to refresh the first time (before any event)
-	setTimeout( function(){ display_level() }, 100 ) // 1/10 second
+	setTimeout( () => display_level(), 100 ) // 1/10 second
 
 	// Start main "loop"
 	document.addEventListener('click', event_handler)
