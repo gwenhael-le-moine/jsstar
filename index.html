@@ -9,10 +9,53 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="css/style.css?v=2">
-	<link rel="stylesheet" href="css/star.css">
-	<link rel="stylesheet" href="css/star_HP48.css">
-	<link rel="stylesheet" href="css/index.css">
+	<style>
+		body {
+		    background-color:#baddad;
+		    font-family: sans-serif;
+		    font-size: 0.8em;
+		}
+		#container header, #container #jsstar, #container footer {
+		    float: left;
+		    width: 100%;
+		}
+		#container header {
+		    font-size: 3em;
+		    text-align: center;
+		}
+		#container footer {
+		    font-size: 0.8em;
+		    color: #555;
+		    text-align: right;
+		    background: #a9cc9c;
+		    border-top: 1px solid #98bb8b;
+		    position: fixed;
+		    bottom: 0;
+		}
+		#container .gstar {
+		    margin: 128px auto 0;
+		    border: 2px solid #98bb8b;
+		}
+
+		.gstar {
+		    width: 660px;
+		    height: 180px;
+		}
+		.gstar em { font-weight: bold; }
+		.gstar #starboard {
+		    width: 320px;
+		    height: 180px;
+		    background: #333;
+		    float: left;
+		}
+		.gstar aside {
+		    float: left;
+		    height: 140px;
+		    width: 130px;
+		    padding: 20px;
+		    background: #ddd;
+		}
+	</style>
 </head>
 <body>
 	<div id="container">
@@ -20,7 +63,7 @@
 		  Cœurs étoilés
 		</header>
 
-		<div id="main" role="main">
+		<div id="jsstar" role="main">
 		</div>
 
 		<footer>
@@ -30,7 +73,7 @@
 
 	<script src="js/star.js"></script>
 	<script>
-		initialize_a_star( "#main", 0, "cyco002" );
+		initialize_a_star( "#jsstar", "cyco002" );
 	</script>
 </body>
 </html>
